@@ -16,13 +16,6 @@ def notation(X_test, y_test, y_pred, model) :
 
     conf_matrix = confusion_matrix(y_test, y_pred)
 
-    # Affichage des métriques
-    print(f'Accuracy: {accuracy}')
-    print(f'Precision: {precision}')
-    print(f'Recall: {recall}')
-    print(f'F1-score: {f1}')
-    print(f'Confusion Matrix:\n{conf_matrix}')
-
     n_classes = len(np.unique(y_test))
     y_pred_proba = model.predict_proba(X_test)
 
