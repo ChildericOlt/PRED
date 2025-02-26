@@ -48,7 +48,7 @@ def notation(X_test, y_test, y_pred, model) :
     plt.show()
 
     auc_roc = roc_auc_score(y_test,y_test_bin, multi_class='ovo')
-    return accuracy, precision, recall, f1, conf_matrix, auc_roc
+    return accuracy, precision, recall, f1, conf_matrix, f"AUC-ROC: {auc_roc:.10f}"
 
 
 # utilisation : 
