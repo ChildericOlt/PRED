@@ -45,10 +45,17 @@ L'algorithme **Support Vector Machine (SVM)** est une méthode de Machine Learni
 
 **Étapes de l'entraînement SVM :**
 1. Séparation des données en features (X) et labels (y)
-2. Utilisation d'un SVM avec un noyau adapté (linéaire ou radial)
+2. Utilisation d'un SVM avec un noyau Radial Basis Function (rbf)
 3. Optimisation des hyperparamètres via validation croisée
 4. Entraînement du modèle sur l'ensemble d'entraînement
 5. Évaluation sur l'ensemble de test
+
+#### 2.2.1 Noyau RBF
+Utilisation :
+Fonctionne bien lorsque les frontières de séparation ne sont pas linéaires.
+Très efficace pour des données complexes et non linéaires.
+Inconvénient :
+Peut être difficile à optimiser.
 
 ### 2.3. Classification Multi-Classes avec Réseau de Neurones (NN)
 Une fois qu'une attaque est détectée par le SVM, un **réseau de neurones** est utilisé pour classifier le type exact d'attaque.
