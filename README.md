@@ -1,15 +1,17 @@
-# Classification et Détection avec SVM et Réseau de Neurones
+# Détection d'attaques via Machine Learning et Deep Learning
 
-## Introduction
-Ce projet implémente deux approches de Machine Learning et Deep Learning pour la classification et la détection d'attaques.
+Ce projet implémente un pipeline de détection d'attaques réseau en utilisant des modèles de **Machine Learning (ML)** et **Deep Learning (DL)**.
 
-1. **Support Vector Machine (SVM)** : Utilisé pour la classification binaire, permettant de distinguer les attaques des comportements normaux.
-2. **Neural Network (NN)** : Un réseau de neurones conçu pour classifier le type exact d'attaque après la détection initiale.
+## Données utilisées
 
-Ce projet suit un pipeline structuré incluant le chargement des données, le prétraitement, l'entraînement des modèles et l'évaluation des performances.
+Les données proviennent de :
 
-## 1. Installation et Configuration
-Avant d'exécuter le projet, il est recommandé d'utiliser un environnement virtuel Python pour isoler les dépendances.
+- **Friday-WorkingHours-Afternoon-DDos.pcap\_ISCX.csv**
+- **2023-02-12.csv**
+
+Les jeux de données sont nettoyés, normalisés et transformés pour s'assurer de leur compatibilité avant d'être utilisés pour l'entraînement des modèles.
+
+## Prérequis
 
 ### Étape 1 : Création d'un environnement virtuel
 ```bash
@@ -30,6 +32,62 @@ python -m venv venv
 ```bash
 pip install -r requirements.txt
 ```
+
+
+## Classification et Détection avec Decision Tree et réseau de neurones artificiel 
+
+Il s'appuie sur des ensembles de données de trafic réseau, les prétraite, effectue un rééquilibrage des classes, puis entraîne :
+
+- Un **Decision Tree Classifier** pour la classification binaire (benin vs attaque).
+- Un **réseau de neurones artificiel (ANN)** pour une classification plus fine des types d'attaques.
+
+### 1. **Prétraitement des données**
+
+- Chargement et harmonisation des noms de colonnes.
+- Sélection des colonnes communes aux deux datasets.
+- Fusion et nettoyage des données.
+- Remplacement des valeurs infinies et suppression des valeurs manquantes.
+- Création des labels :
+  - `label_ml` : 1 si attaque, 0 sinon.
+  - `label_dl` : Classification multi-classe des attaques.
+
+### 2. **Modèle Machine Learning (Decision Tree)**
+
+- Standardisation des features.
+- Séparation des données en ensemble d'entraînement et de test.
+- Optimisation des hyperparamètres via :
+  - **RandomizedSearchCV**
+  - **Optuna**
+- Sélection des meilleurs hyperparamètres.
+- Entraînement du **Decision Tree Classifier**.
+- Prédictions et ajout des résultats dans les données.
+
+### 3. **Rééquilibrage des données (SMOTE + Under-Sampling)**
+
+- Utilisation de **SMOTE** pour augmenter les classes minoritaires.
+- Réduction de la classe majoritaire via **RandomUnderSampler**.
+- Transformation des labels en encodage one-hot pour le modèle DL.
+
+### 4. **Modèle Deep Learning (ANN)**
+
+- Construction d'un réseau de neurones avec plusieurs couches denses (relu + softmax en sortie).
+- Optimisation de l'architecture via une grille de recherche.
+- Entraînement du modèle avec **Adam optimizer** et **cross-entropy loss**.
+- Évaluation sur un ensemble de test.
+
+
+### Résultats attendus
+
+- **Modèle ML (Decision Tree)** : Détection efficace des attaques avec optimisation des hyperparamètres.
+- **Modèle DL (ANN)** : Classification multi-classe plus précise après data augmentation.
+
+
+## Classification et Détection avec SVM et Réseau de Neurones
+
+1. **Support Vector Machine (SVM)** : Utilisé pour la classification binaire, permettant de distinguer les attaques des comportements normaux.
+2. **Neural Network (NN)** : Un réseau de neurones conçu pour classifier le type exact d'attaque après la détection initiale.
+
+Ce projet suit un pipeline structuré incluant le chargement des données, le prétraitement, l'entraînement des modèles et l'évaluation des performances.
 
 ## 2. Explication des Processus
 
@@ -81,9 +139,7 @@ Les modèles sont évalués à l'aide de plusieurs métriques :
 Ce code met en œuvre une approche hybride combinant **SVM** (ML) pour la classification binaire et **NN** (DL) pour l'identification des types d'attaques. Cette méthodologie permet une analyse approfondie des données de sécurité et peut être adaptée à d'autres domaines nécessitant une détection automatique avancée.
 
 
-# Classification et Détection avec Random Forest et CNN 1D
-
-## Introduction
+## Classification et Détection avec Random Forest et CNN 1D
 
 Ce projet implémente une approche hybride pour détecter et classifier les attaques réseau en deux étapes :
 
@@ -91,7 +147,7 @@ Ce projet implémente une approche hybride pour détecter et classifier les atta
 
 2. **Détection d'attaque avec Random Forest** : Une fois une attaque détectée, un réseau de neurones convolutionnel (CNN) est utilisé pour identifier le type d'attaque.
 
-## Explication des Processus
+### Explication des Processus
 
 ### Classification Binaire avec Random Forest
 
@@ -128,20 +184,12 @@ Une fois qu'une attaque est détectée par Random Forest, un réseau de neurones
 * Évaluation sur l'ensemble de test avec métriques de performance
 
 
+## Auteur
 
-## Bibliothèques utilisées
-
-* numpy
-
-* pandas
-
-* scikit-learn
-
-* tensorflow
-
-* keras
-
-* matplotlib
-
-* seaborn
-
+Projet réalisé dans le cadre de l'analyse de sécurité réseau avec honeypots. 🚀
+Réalisé par :
+  - Allan GUILLARD
+  - Othman IBRAHIMI
+  - Childéric OLIET
+Accompagné par :
+  - Rebiha Souadih
