@@ -80,3 +80,68 @@ Les modèles sont évalués à l'aide de plusieurs métriques :
 ## 3. Conclusion
 Ce code met en œuvre une approche hybride combinant **SVM** (ML) pour la classification binaire et **NN** (DL) pour l'identification des types d'attaques. Cette méthodologie permet une analyse approfondie des données de sécurité et peut être adaptée à d'autres domaines nécessitant une détection automatique avancée.
 
+
+# Classification et Détection avec Random Forest et CNN 1D
+
+## Introduction
+
+Ce projet implémente une approche hybride pour détecter et classifier les attaques réseau en deux étapes :
+
+1. **Détection d'attaque avec Random Forest** : Identification si une entrée est un trafic normal ou une attaque.
+
+2. **Détection d'attaque avec Random Forest** : Une fois une attaque détectée, un réseau de neurones convolutionnel (CNN) est utilisé pour identifier le type d'attaque.
+
+## Explication des Processus
+
+### Classification Binaire avec Random Forest
+
+L'algorithme Random Forest (RF) est une méthode de Machine Learning basée sur un ensemble d'arbres de décision. Il permet de séparer les données en deux classes distinctes (attaque vs normal).
+
+#### Étapes de l'entraînement Random Forest :
+
+  1. Séparation dL'algorithme Random Forest (RF) est une méthode de Machine Learning basée sur un ensemble d'arbres detraînement du modèle sur l'ensemble d'entraînement
+
+  2. Évaluation sur l'ensemble de test
+
+### Classification Multi-Classes avec Réseau de Neurones Convolutionnel (CNN)
+
+Une fois qu'une attaque est détectée par Random Forest, un réseau de neurones convolutionnel (CNN) est utilisé pour classifier le type exact d'attaque.
+
+#### Architecture du CNN :
+
+* Plusieurs couches de convolution pour extraire les caractéristiques
+
+* Fonction d'activation ReLU
+
+* Couches de pooling pour réduire la dimension
+
+* Couches de dropout pour éviter l'overfitting
+
+* Fonction softmax en sortie pour classifier les types d'attaques
+
+#### L'entraînement du CNN suit ces étapes :
+
+* Transformation des labels en format one-hot encoding
+
+* Entraînement avec descente de gradient (Adam optimizer)
+
+* Évaluation sur l'ensemble de test avec métriques de performance
+
+
+
+## Bibliothèques utilisées
+
+* numpy
+
+* pandas
+
+* scikit-learn
+
+* tensorflow
+
+* keras
+
+* matplotlib
+
+* seaborn
+
